@@ -175,3 +175,6 @@ PYENV_ROOT=~/.pyenv
 export PATH=$PATH:$PYENV_ROOT/bin
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+# opensslをhomebrewのものに
+export PATH="/usr/local/Cellar/openssl/1.0.2k/bin:$PATH"
