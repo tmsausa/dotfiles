@@ -132,7 +132,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (jedi))))
+ '(package-selected-packages (quote (flymake jedi))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -154,3 +154,8 @@
        (let ((docstring (ad-docstring definition)))
          (and (stringp docstring)
               (get-text-property 0 'dynamic-docstring-function docstring))))))
+
+;; py-autopep8
+(require 'py-autopep8)
+(setq py-autopep8-options '("--max-line-length=200"))
+(setq flycheck-flake8-maximum-line-length 200)
