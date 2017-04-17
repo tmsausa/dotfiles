@@ -71,8 +71,6 @@
 ;; (setq display-time-day-and-date t)
 ;; (setq display-time-24hr-format t)
 (display-time-mode t)
-;; バッテリー残量を表示
-(display-battery-mode t)
 
 ;; リージョン内の行数と文字数をモードラインに表示する（範囲指定時のみ）
 ;; http::/d.hatena.ne.jp/sonota88/20110224/1298557375
@@ -111,13 +109,13 @@
 					:height 120)
 
 ;; auto-installの設定（なんかインストールがうまくいかない時がある）
-(when (require 'auto-install nil t)
-  ;; インストールディレクトリを設定する
-  (setq auto-install-directory "~/.emacs.d/elisp/")
-  ;; EmacsWikiに登録されているelispの名前を取得する
-  (auto-install-update-emacswiki-package-name t)
-  ;; install-elisp の関数を利用可能にする
-  (auto-install-compatibility-setup))
+;; (when (require 'auto-install nil t)
+;;   ;; インストールディレクトリを設定する
+;;   (setq auto-install-directory "~/.emacs.d/elisp/")
+;;   ;; EmacsWikiに登録されているelispの名前を取得する
+;;   (auto-install-update-emacswiki-package-name t)
+;;   ;; install-elisp の関数を利用可能にする
+;;   (auto-install-compatibility-setup))
 
 ;; redo+の設定
 (when (require 'redo+ nil t)
@@ -126,29 +124,30 @@
   )
 
 ;; multi-termの設定
-(if (not (fboundp 'ad-advised-definition-p))
- (defun ad-advised-definition-p (definition)
-   "Return non-nil if DEFINITION was generated from advice information."
-   (if (or (ad-lambda-p definition)
-           (macrop definition)
-           (ad-compiled-p definition))
-       (let ((docstring (ad-docstring definition)))
-         (and (stringp docstring)
-              (get-text-property 0 'dynamic-docstring-function docstring))))))
+;; (if (not (fboundp 'ad-advised-definition-p))
+;;  (defun ad-advised-definition-p (definition)
+;;    "Return non-nil if DEFINITION was generated from advice information."
+;;    (if (or (ad-lambda-p definition)
+;;            (macrop definition)
+;;            (ad-compiled-p definition))
+;;        (let ((docstring (ad-docstring definition)))
+;;          (and (stringp docstring)
+;;               (get-text-property 0 'dynamic-docstring-function docstring))))))
 
 ;; auto-complete
+(require 'auto-complete)
 (require 'auto-complete-config)
-    ;; グローバルでauto-completeを利用
-    (global-auto-complete-mode t)
-    (define-key ac-completing-map (kbd "M-n") 'ac-next)      ; M-nで次候補選択
-    (define-key ac-completing-map (kbd "M-p") 'ac-previous)  ; M-pで前候補選択
-    (setq ac-dwim t)  ; 空気読んでほしい
-    ;; 情報源として
-    ;; * ac-source-filename
-    ;; * ac-source-words-in-same-mode-buffers
-    ;; を利用
-    (setq-default ac-sources '(ac-source-filename ac-source-words-in-same-mode-buffers))
-    ;; また、Emacs Lispモードではac-source-symbolsを追加で利用
+;; グローバルでauto-completeを利用
+(global-auto-complete-mode t)
+(define-key ac-completing-map (kbd "M-n") 'ac-next)      ; M-nで次候補選択
+(define-key ac-completing-map (kbd "M-p") 'ac-previous)  ; M-pで前候補選択
+(setq ac-dwim t)  ; 空気読んでほしい
+;; 情報源として
+;; * ac-source-filename
+;; * ac-source-words-in-same-mode-buffers
+;; を利用
+(setq-default ac-sources '(ac-source-filename ac-source-words-in-same-mode-buffers))
+;; また、Emacs Lispモードではac-source-symbolsを追加で利用
 (add-hook 'emacs-lisp-mode-hook (lambda () (add-to-list 'ac-sources 'ac-source-symbols t)))
 ;; 以下、自動で補完する人用
 ;; (setq ac-auto-start 3)
@@ -156,7 +155,7 @@
 (setq ac-auto-start nil)
 (ac-set-trigger-key "TAB")  ; TABで補完開始(トリガーキー)
 ;; or
-(define-key ac-mode-map (kbd "M-TAB") 'auto-complete)  ; M-TABで補完開始
+;; (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)  ; M-TABで補完開始
 
 ;; ac-python
 (require 'ac-python)
