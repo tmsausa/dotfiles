@@ -12,8 +12,6 @@
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("ELPA" . "http://tromey.com/elpa/"))
-;; インストールしたパッケージにロードパスを通して読み込む
-(package-initialize)
 
 ;; def add-to-load-path
 (defun add-to-load-path (&rest paths)
@@ -93,7 +91,7 @@
 (setq frame-title-format "%f")
 
 ;; 行番号を常に表示する
-(global-linum-mode t)
+;; (global-linum-mode t)
 
 ;; TABの表示幅．初期値は8
 (setq-default tab-width 4)
@@ -138,59 +136,39 @@
          (and (stringp docstring)
               (get-text-property 0 'dynamic-docstring-function docstring))))))
 
+;; auto-complete
+(require 'auto-complete-config)
+    ;; グローバルでauto-completeを利用
+    (global-auto-complete-mode t)
+    (define-key ac-completing-map (kbd "M-n") 'ac-next)      ; M-nで次候補選択
+    (define-key ac-completing-map (kbd "M-p") 'ac-previous)  ; M-pで前候補選択
+    (setq ac-dwim t)  ; 空気読んでほしい
+    ;; 情報源として
+    ;; * ac-source-filename
+    ;; * ac-source-words-in-same-mode-buffers
+    ;; を利用
+    (setq-default ac-sources '(ac-source-filename ac-source-words-in-same-mode-buffers))
+    ;; また、Emacs Lispモードではac-source-symbolsを追加で利用
+(add-hook 'emacs-lisp-mode-hook (lambda () (add-to-list 'ac-sources 'ac-source-symbols t)))
+;; 以下、自動で補完する人用
+;; (setq ac-auto-start 3)
+;; 以下、手動で補完する人用
+(setq ac-auto-start nil)
+(ac-set-trigger-key "TAB")  ; TABで補完開始(トリガーキー)
+;; or
+(define-key ac-mode-map (kbd "M-TAB") 'auto-complete)  ; M-TABで補完開始
+
+;; ac-python
+(require 'ac-python)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (elpy multi-term))))
+ '(package-selected-packages (quote (multi-term))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-(elpy-enable)
-(add-hook 'python-mode-hook
-           '(lambda ()
-              (setq indent-tabs-mode nil);;tabの幅を変える
-              (setq indent-level 4)
-              (setq python-indent 4)
-              (setq tab-width 4)
-              (define-key python-mode-map "\"" 'electric-pair) ;;括弧の補完
-              (define-key python-mode-map "\'" 'electric-pair)
-              (define-key python-mode-map "(" 'electric-pair)
-              (define-key python-mode-map "[" 'electric-pair)
-              (define-key python-mode-map "{" 'electric-pair)
-              (define-key company-active-map (kbd "\C-n") 'company-select-next)
-              (define-key company-active-map (kbd "\C-p") 'company-select-previous)
-              (define-key company-active-map (kbd "\C-d") 'company-show-doc-buffer)
-              (define-key company-active-map (kbd "<tab>") 'company-complete)
-              (auto-complete-mode -1)
-              ))
-
-;;elpy 色の設定 デフォルトは黄色でださい
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(company-minimum-prefix-length 1)
- '(company-selection-wrap-around t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:background "#131313" :foreground "white"))))
- '(company-scrollbar-bg ((t (:inherit company-tooltip :background "dim gray"))))
- '(company-scrollbar-fg ((t (:background "blue"))))
- '(company-tooltip ((t (:background "dim gray" :foreground "white"))))
- '(company-tooltip-annotation ((t (:inherit company-tooltip :foreground "white"))))
- '(company-tooltip-common ((t (:inherit company-tooltip :foreground "white"))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :foreground "white"))))
- '(company-tooltip-selection ((t (:inherit company-tooltip :background "blue"))))
- '(mode-line ((t (:foreground "#F8F8F2" :background "#303030" :box (:line-width 1 :color "#000000" :style released-button)))))
- '(mode-line-buffer-id ((t (:foreground nil :background nil))))
- '(mode-line-inactive ((t (:foreground "#BCBCBC" :background "#101010" :box (:line-width 1 :color "#333333"))))))

@@ -93,7 +93,7 @@
 (setq frame-title-format "%f")
 
 ;; 行番号を常に表示する
-(global-linum-mode t)
+;; (global-linum-mode t)
 
 ;; TABの表示幅．初期値は8
 (setq-default tab-width 4)
@@ -113,13 +113,13 @@
 					:height 120)
 
 ;; auto-installの設定（なんかインストールがうまくいかない時がある）
-(when (require 'auto-install nil t)
-  ;; インストールディレクトリを設定する
-  (setq auto-install-directory "~/.emacs.d/elisp/")
-  ;; EmacsWikiに登録されているelispの名前を取得する
-  (auto-install-update-emacswiki-package-name t)
-  ;; install-elisp の関数を利用可能にする
-  (auto-install-compatibility-setup))
+;; (when (require 'auto-install nil t)
+  ;; ;; インストールディレクトリを設定する
+  ;; (setq auto-install-directory "~/.emacs.d/elisp/")
+  ;;;; EmacsWikiに登録されているelispの名前を取得する
+  ;;(auto-install-update-emacswiki-package-name t)
+  ;;;; install-elisp の関数を利用可能にする
+  ;;(auto-install-compatibility-setup))
 
 ;; redo+の設定
 (when (require 'redo+ nil t)
@@ -142,7 +142,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (multi-term))))
+ '(package-selected-packages (quote (multi-term elpy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
