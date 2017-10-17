@@ -8,10 +8,11 @@
 (when (> emacs-major-version 23)
   (defvar user-emacs-directory "~/.emacs.d"))
 
-;; パッケージリポジトリにMarmaladeと開発者運営のELPAを追加
+;; パッケージリポジトリにmelpaと開発者運営のELPAを追加
 (add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives '("ELPA" . "http://tromey.com/elpa/"))
+             '("melpa" . "https://melpa.org/packages/"))
+(when (< emacs-major-version 24)
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
 ;; def add-to-load-path
 (defun add-to-load-path (&rest paths)
@@ -156,18 +157,3 @@
 (ac-set-trigger-key "TAB")  ; TABで補完開始(トリガーキー)
 ;; or
 ;; (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)  ; M-TABで補完開始
-
-;; ac-python
-(require 'ac-python)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (multi-term))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
