@@ -52,6 +52,15 @@
 (set-language-environment "Japanese")
 (prefer-coding-system 'utf-8)
 
+;; iedit
+(require 'iedit)
+(global-set-key "\C-cl" 'iedit-mode)
+(define-key iedit-mode-keymap (kbd "C-m") 'iedit-toggle-selection)
+(define-key iedit-mode-keymap (kbd "M-p") 'iedit-expand-up-a-line)
+(define-key iedit-mode-keymap (kbd "M-n") 'iedit-expand-down-a-line)
+(define-key iedit-mode-keymap (kbd "M-h") 'iedit-restrict-function)
+(define-key iedit-mode-keymap (kbd "M-i") 'iedit-restrict-current-line)
+
 ;; Mac OS Xの場合のファイル名の設定
 (when (eq system-type 'darwin)
   (require 'ucs-normalize)
@@ -125,15 +134,15 @@
   )
 
 ;; multi-termの設定
-;; (if (not (fboundp 'ad-advised-definition-p))
-;;  (defun ad-advised-definition-p (definition)
-;;    "Return non-nil if DEFINITION was generated from advice information."
-;;    (if (or (ad-lambda-p definition)
-;;            (macrop definition)
-;;            (ad-compiled-p definition))
-;;        (let ((docstring (ad-docstring definition)))
-;;          (and (stringp docstring)
-;;               (get-text-property 0 'dynamic-docstring-function docstring))))))
+(if (not (fboundp 'ad-advised-definition-p))
+ (defun ad-advised-definition-p (definition)
+   "Return non-nil if DEFINITION was generated from advice information."
+   (if (or (ad-lambda-p definition)
+           (macrop definition)
+           (ad-compiled-p definition))
+       (let ((docstring (ad-docstring definition)))
+         (and (stringp docstring)
+              (get-text-property 0 'dynamic-docstring-function docstring))))))
 
 ;; auto-complete
 (require 'auto-complete)
@@ -157,3 +166,15 @@
 (ac-set-trigger-key "TAB")  ; TABで補完開始(トリガーキー)
 ;; or
 ;; (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)  ; M-TABで補完開始
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages (quote (matlab-mode iedit multi-term auto-complete))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
