@@ -8,9 +8,12 @@
 (when (> emacs-major-version 23)
   (defvar user-emacs-directory "~/.emacs.d"))
 
-;; パッケージリポジトリにmelpaと開発者運営のELPAを追加
+;; パッケージリポジトリにmelpa, melpa-stableと開発者運営のELPAを追加
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/"))
+
 (when (< emacs-major-version 24)
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
