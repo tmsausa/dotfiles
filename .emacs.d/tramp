@@ -1,0 +1,63 @@
+;; -*- emacs-lisp -*- <17/12/04 10:53:57 /Users/tmachida/.emacs.d/tramp>
+;; Tramp connection history.  Don't change this file.
+;; You can delete it, forcing Tramp to reapply the checks.
+
+((["ssh" nil "tachiuo" nil nil]
+  ("uname" "Linux 3.13.0-85-generic")
+  ("locale" "LC_ALL=en_US.utf8")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+  ("remote-shell" "/bin/sh")
+  ("~.emacs.d" "/bin/sh: 39: cd: can't cd to ~.emacs.d")
+  ("file-exists" "test -e")
+  ("readlink" "\\readlink")
+  ("stat" nil)
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("git" "\\git"))
+ (["ssh" nil "maguro" nil nil]
+  ("uname" "Linux 3.13.0-85-generic")
+  ("locale" "LC_ALL=en_US.utf8")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+  ("remote-shell" "/bin/sh")
+  ("~" "/home/mil/machida")
+  ("file-exists" "test -e")
+  ("readlink" "\\readlink")
+  ("stat" nil)
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("git" "\\git")
+  ("id" "/usr/bin/id")
+  ("gid-string" "member")
+  ("gid-integer" 2001)
+  ("uid-integer" 2172))
+ (["scp" nil "kabutogani" nil nil]
+  ("uname" "Linux 3.13.0-32-generic")
+  ("locale" "LC_ALL=en_US.utf8")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+  ("remote-shell" "/bin/sh")
+  ("~" "/home/mil/machida")
+  ("file-exists" "test -e")
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("ls" "/bin/ls --color=never")
+  ("ls-dired" t)
+  ("stat" nil)
+  ("id" "/usr/bin/id")
+  ("gid-integer" 2001)
+  ("readlink" "\\readlink")
+  ("gid-string" "member")
+  ("uid-integer" 2172)
+  ("tmpdir" "/tmp")
+  ("touch-t" t)
+  ("touch" "\\touch"))
+ (["scp" nil "mil" nil nil]
+  nil))

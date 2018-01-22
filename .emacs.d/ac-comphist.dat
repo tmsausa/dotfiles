@@ -1,4 +1,18 @@
-((("shututil" .
+((("SubElement" .
+   [0 0 0 0 0 0 0 0 0 1])
+  ("CLASS_NAME" .
+   [0 0 0 0 0 0 0 0 0 1])
+  ("ROOT_PATH" .
+   [0 0 0 0 0 0 0 0 1])
+  ("set_filename_in_annotations" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2])
+  ("trans_labelnames_in_annotations" .
+   [0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("trans_" .
+   [0 0 0 0 0 1])
+  ("ANNOTATIONS_ROOT_PATH" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2])
+  ("shututil" .
    [0 0 0 0 0 0 0 1])
   ("eps_greedy" .
    [0 0 0 0 0 0 0 0 0 1])

@@ -174,10 +174,45 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (matlab-mode iedit multi-term auto-complete))))
+ '(package-selected-packages
+   (quote
+	(tuareg markdown-mode flycheck elpy auto-virtualenvwrapper virtualenvwrapper jedi python-mode magit matlab-mode iedit multi-term auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; python-mode
+(require 'python-mode)
+(setq auto-mode-alist (cons '("\\.py\\'" . python-mode)
+							auto-mode-alist))
+
+;;; Elpy を有効化
+(elpy-enable)
+;;; 使用する仮想環境を設定
+(defvar venv-default "~/.virtualenvs/default/")
+;;; デフォルト環境を有効化
+(pyvenv-activate venv-default)
+;;; REPL 環境に IPython を使う
+(elpy-use-ipython)
+;;; 自動補完のバックエンドとして Rope か Jedi を選択
+(setq elpy-rpc-backend "rope")
+
+;; indent
+(set-face-background 'highlight-indentation-face "#313131")
+(set-face-background 'highlight-indentation-current-column-face "#777777")
+(add-hook 'elpy-mode-hook 'highlight-indentation-current-column-mode)
+
+;; jedi
+;; (require 'jedi)
+;; (add-hook 'python-mode-hook 'jedi:setup)
+;; (setq jedi:complete-on-dot t)
+
+;; ;; virtualenvwrapper
+;; (require 'virtualenvwrapper)
+;; ;;(require 'auto-virtualenvwrapper)
+;; (setq venv-location "/Users/tmachida/.virtualenvs/default")
+;; ;;(add-hook 'python-mode-hook #'auto-virtualenvwrapper-activate)
+
